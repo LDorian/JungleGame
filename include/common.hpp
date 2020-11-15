@@ -16,9 +16,7 @@ extern Texture gBoard;
 extern Texture bluePieces[9];
 extern Texture redPieces[9];
 extern Texture gChien;
-extern Texture casaVerde;
 extern Texture pieceSelected;
-extern Texture bestMove;
 extern Texture endGame[3];
 extern Texture selection;
 
