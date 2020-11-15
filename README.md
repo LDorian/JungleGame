@@ -4,7 +4,7 @@
 
 **To Do list**
 
-* Fixing Core Dump Error when starting
+* Fixing Core Dump Error when starting -> X Y mouse coordinates
 * Making animals moving
 * Improve GUI code
 * Add an IA with tree intelligence
