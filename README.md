@@ -4,11 +4,11 @@
 
 **To Do list**
 
-* Fixing Core Dump Error when starting -> X Y mouse coordinates
-* Making animals moving
+* Water Check - Values priority
 * Improve GUI code
 * Add an IA with tree intelligence
 * Add online mode
+* States.cpp -> !Friend move (line 132)
 
 **Folders :**
 

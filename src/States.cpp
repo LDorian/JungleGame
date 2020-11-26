@@ -107,7 +107,7 @@ Obstacles States::IsInTheSpot(Piece *piece, int position_X, int position_Y)
   int i, j;
   Piece **tmp;
 
-  for (i = 0; i <= 15; i++)
+  for (i = 0; i <= 7; i++)
   {
     tmp = blue_pieces;
     for (j = 0; j <= 1; j++)
@@ -132,18 +132,19 @@ Obstacles States::IsInTheSpot(Piece *piece, int position_X, int position_Y)
 bool States::MovePiece(Piece *piece, int position_X, int position_Y)
 {
   Obstacles isIntheSpot = IsInTheSpot(piece, position_X, position_Y);
+  SDL_Log("MOOOVE %d , %d", position_X, position_Y);
   if (piece->IsMovementPossible(position_X, position_Y) &&
       (IsInTheWay(piece, position_X, position_Y) == Obstacles::Empty) &&
       (isIntheSpot != Obstacles::Friend) && (pieceTurn == piece->GetColor()))
   {
 
-    if (piece->GetName() == PieceName::Tigre)
-      //if(Blocked(piece->GetColor(), position_X, position_Y))
-      return false;
+    // if (piece->GetName() == PieceName::Tigre)
+    //   //if(Blocked(piece->GetColor(), position_X, position_Y))
+    //   return false;
 
-    if (piece->GetName() == PieceName::Rat) //If enemy in front of him and try to go in
-      if (isIntheSpot == Obstacles::Enemy && (position_X - piece->GetPositionX() == 0))
-        return false;
+    // if (piece->GetName() == PieceName::Rat) //If enemy in front of him and try to go in
+    //   if (isIntheSpot == Obstacles::Enemy && (position_X - piece->GetPositionX() == 0))
+    //     return false;
 
     if (isIntheSpot == Obstacles::Enemy)
       EatPiece(position_X, position_Y);

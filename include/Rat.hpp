@@ -12,10 +12,6 @@ using namespace std;
 
 class Rat : public Piece
 {
-private:
-  bool hasDiagonalEnemyRight = false;
-  bool hasDiagonalEnemyLeft = false;
-
 public:
   Rat(bool, int, int);
   ~Rat();

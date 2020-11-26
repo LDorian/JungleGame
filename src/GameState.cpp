@@ -165,7 +165,11 @@ void GameState::renderPVP()
                     x = -1;
                     y = -1;
                     SDL_GetMouseState(&x, &y);
+                    //SDL_Log("Avant %d, %d", x, y);
+
                     board->updateFocus((int)x, (int)y);
+
+
 
                     if (board->checkMovement(states))
                     {

@@ -14,8 +14,11 @@ void GUIBoard::updateFocus(int x, int y)
     else
     {
 
-        focus.x = (int)(x) / 53;
-        focus.y = (int)(y) / 68;
+        focus.x = (int)(x) / 75;
+        focus.y = (int)(y) / 75;
+        x = focus.x;
+        y = focus.y;
+        //SDL_Log("Boucle : %d, %d", x,y);
     }
 }
 
@@ -72,7 +75,9 @@ bool GUIBoard::checkMovement(States *states)
     {
         if (focusedPiece->GetName() != PieceName::Empty)
         {
+            SDL_Log("test : %d %d", focus.x, focus.y);
             move = states->MovePiece(focusedPiece, focus.x, focus.y);
+        
         }
     }
     return move;
@@ -105,11 +110,11 @@ bool GUIBoard::choosePieceTurn(GameState *gm, States *states)
                     selected = true;
                     if (y > 340)
                     {
-                        blue = true;
+                        blue = false;
                     }
                     else
                     {
-                        blue = false;
+                        blue = true;
                     }
                     break;
                 case SDL_MOUSEMOTION:

@@ -1,4 +1,5 @@
 #include "../include/Rat.hpp"
+#include <SDL2/SDL.h>
 
 Rat::Rat(bool isblue, int position_X, int position_Y)
 {
@@ -19,7 +20,11 @@ bool Rat::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
   {
     int movement_x = FinalPosition_X - position_X;
     int movement_y = FinalPosition_Y - position_Y;
-  }
 
+    if((movement_y == 1 || movement_y == -1) && movement_x == 0)
+      return true;
+    else if((movement_x == 1 || movement_x == -1) && movement_y == 0)
+      return true;
+  }
   return false;
 }
