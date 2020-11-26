@@ -1,4 +1,5 @@
 # Dou Shou Qi - SDL
+![Image](./assets/chatB.bmp)
 
  ESIEE I3 Rioc Project by Gabin Legrand and Dorian Lamour
 
