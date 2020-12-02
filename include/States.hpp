@@ -18,13 +18,6 @@ enum class GameResult
   NoContest
 };
 
-struct PiecesValues
-{
-  int max_Value_X = -1;
-  int max_Value_Y = -1;
-  int value = -20;
-};
-
 class States
 {
 private:
