@@ -18,7 +18,7 @@ void GUIBoard::updateFocus(int x, int y)
         focus.y = (int)(y) / 75;
         x = focus.x;
         y = focus.y;
-        //SDL_Log("Boucle : %d, %d", x,y);
+        SDL_Log("Boucle : %d, %d", x,y);
     }
 }
 

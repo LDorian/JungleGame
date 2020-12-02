@@ -15,7 +15,7 @@ Panthere::~Panthere()
 
 bool Panthere::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
 {
-  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 8 && FinalPosition_Y < 8 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
+  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 9 && FinalPosition_Y < 9 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
   {
     int movement_x = FinalPosition_X - position_X;
     int movement_y = FinalPosition_Y - position_Y;

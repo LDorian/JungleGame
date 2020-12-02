@@ -165,7 +165,7 @@ void GameState::renderPVP()
                     x = -1;
                     y = -1;
                     SDL_GetMouseState(&x, &y);
-                    //SDL_Log("Avant %d, %d", x, y);
+                    SDL_Log("Avant %d, %d", x, y);
 
                     board->updateFocus((int)x, (int)y);
 
@@ -178,6 +178,7 @@ void GameState::renderPVP()
                     else
                     {
                         //If no move, actual focus = piece focus
+                        SDL_Log("Dans le premier click");
                         board->focusedPiece = states->GetPiece(board->focus.x, board->focus.y);
                     }
                     break;

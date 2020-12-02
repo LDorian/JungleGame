@@ -286,7 +286,7 @@ bool States::IsPositionValid(Piece *piece, int position_X, int position_Y)
 
 Piece *States::GetPiece(int position_X, int position_Y)
 {
-  if ((position_X >= 0) && (position_Y >= 0) && (position_X < 8) && (position_Y < 8))
+  if ((position_X >= 0) && (position_Y >= 0) && (position_X < 9) && (position_Y < 9))
   {
     for (int i = 0; i < 8; i++)
     {
