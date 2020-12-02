@@ -145,9 +145,11 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
     // if (piece->GetName() == PieceName::Rat) //If enemy in front of him and try to go in
     //   if (isIntheSpot == Obstacles::Enemy && (position_X - piece->GetPositionX() == 0))
     //     return false;
-
-    if (isIntheSpot == Obstacles::Enemy)
+    
+    if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == true)
       EatPiece(position_X, position_Y);
+    else if( isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == false)
+      return false;
 
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
@@ -156,9 +158,34 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
   return false;
 }
 
-void States::EatPiece(int position_X, int position_Y)
+//Check Values:
+
+bool States::CheckValues(Piece *piece, int position_X, int position_Y)
 {
   Piece **tmp;
+  int i, j;
+  tmp = blue_pieces;
+  for(i = 0; i < 2; i++)
+  {
+    for(j = 0; j < 8; j++)
+    {
+      if ((tmp[j]->GetPositionX() == position_X) && (tmp[j]->GetPositionY() == position_Y))
+      {
+        if(piece>*tmp)
+          return true; // If greater = true
+        else
+          return false;        
+      }
+    }
+    tmp = red_pieces;
+  }
+  return false;
+}
+
+//Set Dead on eat
+void States::EatPiece(int position_X, int position_Y)
+{
+  Piece **tmp; 
   int i, j;
   tmp = blue_pieces;
   for (i = 0; i < 2; i++)

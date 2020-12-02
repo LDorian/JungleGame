@@ -5,7 +5,7 @@
 
 **To Do list**
 
-* Values priority
+* Mouse > elephant
 * Jump over water
 * Solve line x=8 selection
 * _Add an IA with tree intelligence_
