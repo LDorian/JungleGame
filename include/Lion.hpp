@@ -20,6 +20,7 @@ public:
   using Piece::GetPositionX;
   using Piece::GetPositionY;
   bool IsMovementPossible(int, int);
+  bool IsInWater(int, int);
 };
 
 #endif
