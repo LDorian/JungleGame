@@ -8,6 +8,7 @@
 * Mouse > elephant
 * Jump over water
 * Solve line x=8 selection
+* Winning condition
 * _Add an IA with tree intelligence_
 * _Add online mode_
 * _Improve GUI code_
