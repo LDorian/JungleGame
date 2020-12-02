@@ -41,7 +41,7 @@ public:
   Obstacles IsInTheWay(Piece *, int, int);
   Obstacles IsInTheSpot(Piece *, int, int);
   bool MovePiece(Piece *, int, int); //Move the piece only if possible, returning true if possible and false otherwise (being able to eat a piece when an enemy is in the final square)
-
+  bool IsInBase(bool);
   GameResult WhoWon(void);
   bool IsPositionValid(Piece *, int, int); //If move position is valid
   Piece *GetPiece(int, int);               //From x and y, return piece

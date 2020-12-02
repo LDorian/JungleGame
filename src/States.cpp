@@ -49,7 +49,7 @@ Obstacles States::IsInTheWay(Piece *piece, int position_X, int position_Y)
 
   switch (piece->GetName())
   {
-    // If needed add a case where animal and special moves
+    // If needed add a case where animal and special moves -> For instance jump over water and so on
   default:
     int deplacement_x = position_X - piece->GetPositionX();
     int deplacement_y = position_Y - piece->GetPositionY();
@@ -174,15 +174,41 @@ void States::EatPiece(int position_X, int position_Y)
   }
 }
 
+// bool States::IsInBase(bool baseSide)
+// {
+//   Piece **tmp;
+//   Piece **tmp2;
+//   int i, j, k, x, y;
+//   if (baseSide)
+//   {
+//     tmp = blue_pieces;
+//     tmp2 = red_pieces;
+//   }
+//   else
+//   {
+//     tmp = red_pieces;
+//     tmp2 = blue_pieces;
+//   }
+
+//   for (i = 0; i < 9; i++)
+//   {
+//     if (tmp[i]->GetPositionX() == 3 && tmp[i]->GetPositionY() == 0)
+//       return true;
+//   }
+//   return false;
+// }
+
 GameResult States::WhoWon(void)
 {
   bool blue = false, red = false;
   int i;
 
-// Test Pour gerer l'erreur du core dump
+  // Test winning condition
+  //Array investigation
+  // blue = IsInBase(true);
+  // red = IsInBase(false);
   blue = !blue_pieces[1]->GetIsAlive();
   red = !red_pieces[1]->GetIsAlive();
-
   if (blue && red)
     return GameResult::Draw;
 
@@ -190,16 +216,16 @@ GameResult States::WhoWon(void)
   {
     for (i = 0; i < 9; i++)
     {
-      if (blue_pieces[i]->GetIsAlive() || red_pieces[i]->GetIsAlive() )
+      if (blue_pieces[i]->GetIsAlive() || red_pieces[i]->GetIsAlive())
         return GameResult::NoContest;
     }
     return GameResult::Draw;
   }
 
-  if (blue)
+  if (red)
     return GameResult::redWins;
 
-  if (red)
+  if (blue)
     return GameResult::blueWins;
 
   return GameResult::NoContest;

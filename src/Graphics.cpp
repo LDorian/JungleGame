@@ -15,12 +15,10 @@ SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 // Les Textures
 Texture gBoard;
-Texture casaVerde;
 Texture bluePieces[9];
 Texture redPieces[9];
 Texture gChien;
 Texture pieceSelected;
-Texture bestMove;
 Texture endGame[3];
 Texture selection;
 
