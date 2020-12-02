@@ -9,7 +9,6 @@
 * Improve GUI code
 * Add an IA with tree intelligence
 * Add online mode
-* States.cpp -> !Friend move (line 132)
 
 **Folders :**
 
