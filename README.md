@@ -14,7 +14,6 @@
 
 * Traps + Can't go on his base
 * Change / Improve Graphics
-* Winning condition
 * Save and Resume a game
 * _Add an IA with tree intelligence with many levels_
 * _Add online mode_
