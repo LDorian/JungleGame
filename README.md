@@ -5,7 +5,7 @@
 
 **To Do list**
 
-* Mouse > elephant
+* Values conditions
 * Jump over water
 * Solve line x=8 selection
 * Winning condition
