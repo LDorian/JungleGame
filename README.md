@@ -12,9 +12,10 @@
 
 **To Do list**
 
-* Values conditions
-* Jump over water
+* Traps + Can't go on his base
+* Change / Improve Graphics
 * Winning condition
+* Save and Resume a game
 * _Add an IA with tree intelligence with many levels_
 * _Add online mode_
 * _Improve GUI code_

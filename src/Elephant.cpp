@@ -3,6 +3,7 @@
 Elephant::Elephant(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Elephant;
+  this->value = PieceValue::Elephant;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;

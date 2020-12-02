@@ -20,6 +20,11 @@ PieceName Piece::GetName()
   return name;
 }
 
+PieceValue Piece::GetValue()
+{
+  return value;
+}
+
 int Piece::GetPositionX()
 {
   return position_X;
@@ -36,10 +41,10 @@ bool Piece::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
   return false;
 }
 
-void Piece::SetDiagonalEnemy(bool hasDiagonalEnemyRight, bool hasDiagonalEnemyLeft)
+bool Piece::IsInWater(int FinalPosition_X, int FinalPosition_Y)
 {
+  return false;
 }
-
 void Piece::SetPosition(int position_X, int position_Y)
 {
   if(isAlive)

@@ -3,6 +3,7 @@
 Panthere::Panthere(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Panthere;
+  this->value = PieceValue::Panthere;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;

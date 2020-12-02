@@ -2,6 +2,7 @@
 Loup::Loup(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Loup;
+  this->value = PieceValue::Loup;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;

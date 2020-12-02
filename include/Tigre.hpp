@@ -17,6 +17,7 @@ public:
   ~Tigre();
   using Piece::GetColor;
   using Piece::GetName;
+  using Piece::GetValue;
   using Piece::GetPositionX;
   using Piece::GetPositionY;
   bool IsMovementPossible(int, int);

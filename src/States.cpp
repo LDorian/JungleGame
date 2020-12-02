@@ -132,24 +132,20 @@ Obstacles States::IsInTheSpot(Piece *piece, int position_X, int position_Y)
 bool States::MovePiece(Piece *piece, int position_X, int position_Y)
 {
   Obstacles isIntheSpot = IsInTheSpot(piece, position_X, position_Y);
-  SDL_Log("MOOOVE %d , %d", position_X, position_Y);
+  //SDL_Log("MOOOVE %d , %d", position_X, position_Y);
+  //SDL_Log("Water : %d", piece->IsInWater(position_X, position_Y));
   if (piece->IsMovementPossible(position_X, position_Y) &&
       (IsInTheWay(piece, position_X, position_Y) == Obstacles::Empty) &&
       (isIntheSpot != Obstacles::Friend) && (pieceTurn == piece->GetColor()))
   {
-
-    // if (piece->GetName() == PieceName::Tigre)
-    //   //if(Blocked(piece->GetColor(), position_X, position_Y))
-    //   return false;
-
-    // if (piece->GetName() == PieceName::Rat) //If enemy in front of him and try to go in
-    //   if (isIntheSpot == Obstacles::Enemy && (position_X - piece->GetPositionX() == 0))
-    //     return false;
-
-    if (isIntheSpot == Obstacles::Enemy /*&& CheckValues(piece, position_X, position_Y) == true*/)
+    if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == 1)
       EatPiece(position_X, position_Y);
-    // else if( isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == false)
-    //   return false;
+    else if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == 2)
+      return false;
+    else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 3 && piece->IsInWater(piece->GetPositionX(), piece->GetPositionY()) == false)
+      EatPiece(position_X, position_Y);
+    else if (CheckValues(piece, position_X, position_Y) == 3)
+      return false;
 
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
@@ -160,32 +156,34 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
 
 //Check Values:
 
-// bool States::CheckValues(Piece *piece, int position_X, int position_Y)
-// {
-//   Piece **tmp;
-//   int i, j;
-//   tmp = blue_pieces;
-//   for(i = 0; i < 2; i++)
-//   {
-//     for(j = 0; j < 8; j++)
-//     {
-//       if ((tmp[j]->GetPositionX() == position_X) && (tmp[j]->GetPositionY() == position_Y))
-//       {
-//         if(piece>*tmp)
-//           return true; // If greater = true
-//         else
-//           return false;        
-//       }
-//     }
-//     tmp = red_pieces;
-//   }
-//   return false;
-// }
+int States::CheckValues(Piece *piece, int position_X, int position_Y) // Return 1 -> OK, Return 2 -> Pas OK, Return 3 -> Rat mange elephant
+{
+  Piece **tmp;
+  int i, j;
+  tmp = blue_pieces;
+  for (i = 0; i < 2; i++)
+  {
+    for (j = 0; j < 8; j++)
+    {
+      if ((tmp[j]->GetPositionX() == position_X) && (tmp[j]->GetPositionY() == position_Y))
+      {
+        if (piece->GetValue() > tmp[j]->GetValue())
+          return 1;                                        // If greater = true
+        else if (tmp[j]->GetName() == PieceName::Elephant) //If elephant
+          return 3;
+        else
+          return 2;
+      }
+    }
+    tmp = red_pieces;
+  }
+  return 2;
+}
 
 //Set Dead on eat
 void States::EatPiece(int position_X, int position_Y)
 {
-  Piece **tmp; 
+  Piece **tmp;
   int i, j;
   tmp = blue_pieces;
   for (i = 0; i < 2; i++)

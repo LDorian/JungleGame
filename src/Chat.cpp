@@ -3,6 +3,7 @@
 Chat::Chat(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Chat;
+  this->value = PieceValue::Chat;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;

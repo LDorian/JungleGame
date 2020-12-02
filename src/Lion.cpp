@@ -3,6 +3,7 @@
 Lion::Lion(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Lion;
+  this->value = PieceValue::Lion;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;
@@ -22,6 +23,10 @@ bool Lion::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
     if ((movement_y == 1 || movement_y == -1) && movement_x == 0)
       return true;
     else if ((movement_x == 1 || movement_x == -1) && movement_y == 0)
+      return true;
+    else if (((movement_y == 4 || movement_y == -4) && movement_x == 0 && ((position_X > 0 && position_X < 3) || (position_X > 3 && position_X < 8))))
+      return true;
+    else if (((movement_x == 3 || movement_x == -3) && movement_y == 0 && ((position_Y > 2 && position_Y < 6))))
       return true;
   }
 

@@ -4,6 +4,7 @@
 Rat::Rat(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Rat;
+  this->value = PieceValue::Rat;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;
@@ -27,4 +28,12 @@ bool Rat::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
       return true;
   }
   return false;
+}
+
+bool Rat::IsInWater(int x, int y)
+{
+  if ((x > 0 && x < 3 || x > 3 && x < 6) && (y > 2 && y < 6))
+    return true;
+  else
+    return false;
 }

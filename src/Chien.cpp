@@ -3,6 +3,7 @@
 Chien::Chien(bool isblue, int position_X, int position_Y)
 {
   this->name = PieceName::Chien;
+  this->value = PieceValue::Chien;
   this->isblue = isblue;
   this->position_X = position_X;
   this->position_Y = position_Y;
