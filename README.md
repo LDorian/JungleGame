@@ -1,6 +1,12 @@
 # Dou Shou Qi - SDL
 ![Image](./assets/ratR.bmp)
 ![Image](./assets/chatB.bmp)
+![Image](./assets/chienR.bmp)
+![Image](./assets/LoupB.bmp)
+![Image](./assets/PanthereR.bmp)
+![Image](./assets/TigreB.bmp)
+![Image](./assets/LionR.bmp)
+![Image](./assets/ElephantB.bmp)
 
  ESIEE I3 Rioc Project by Gabin Legrand and Dorian Lamour
 
