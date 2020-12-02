@@ -8,10 +8,9 @@
 * Values priority
 * Jump over water
 * Solve line x=8 selection
-
-* Improve GUI code
-* Add an IA with tree intelligence
-* Add online mode
+** Improve GUI code
+** Add an IA with tree intelligence
+** Add online mode
 
 **Folders :**
 
