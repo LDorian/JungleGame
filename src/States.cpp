@@ -146,7 +146,7 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
       EatPiece(position_X, position_Y);
     else if (CheckValues(piece, position_X, position_Y) == 3)
       return false;
-
+    SDL_Log("Base : %d", IsInBase());
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
     return true;
@@ -199,45 +199,45 @@ void States::EatPiece(int position_X, int position_Y)
   }
 }
 
-// bool States::IsInBase(bool baseSide)
-// {
-//   Piece **tmp;
-//   Piece **tmp2;
-//   int i, j, k, x, y;
-//   if (baseSide)
-//   {
-//     tmp = blue_pieces;
-//     tmp2 = red_pieces;
-//   }
-//   else
-//   {
-//     tmp = red_pieces;
-//     tmp2 = blue_pieces;
-//   }
+int States::IsInBase()
+{
+  Piece **tmp;
+  int i, j;
+  tmp = blue_pieces;
 
-//   for (i = 0; i < 9; i++)
-//   {
-//     if (tmp[i]->GetPositionX() == 3 && tmp[i]->GetPositionY() == 0)
-//       return true;
-//   }
-//   return false;
-// }
+  for (i = 0; i < 2; i++)
+  {
+    for (j = 0; j < 8; j++)
+    {
+      if ((tmp[j]->GetPositionY() == 0 || tmp[j]->GetPositionY() == 8) && (tmp[j]->GetPositionX() == 3))
+      {
+        if (i == 0)
+          return 1;
+        else if (i == 1)
+          return 2;
+      }
+    }
+    tmp = red_pieces;
+  }
+  return 0;
+}
 
 GameResult States::WhoWon(void)
 {
-  bool blue = false, red = false;
+  // bool blue = false, red = false;
   int i;
 
   // Test winning condition
   //Array investigation
   // blue = IsInBase(true);
-  // red = IsInBase(false);
-  blue = !blue_pieces[1]->GetIsAlive();
-  red = !red_pieces[1]->GetIsAlive();
-  if (blue && red)
-    return GameResult::Draw;
+  // // red = IsInBase(false);
+  // blue = !blue_pieces[1]->GetIsAlive();
+  // red = !red_pieces[1]->GetIsAlive();
 
-  if (!blue && !red)
+  // if (blue && red)
+  //   return GameResult::Draw;
+
+  if (!IsInBase() == 1 && !IsInBase() == 2)
   {
     for (i = 0; i < 9; i++)
     {
@@ -247,10 +247,10 @@ GameResult States::WhoWon(void)
     return GameResult::Draw;
   }
 
-  if (red)
+  if (IsInBase() == 2)
     return GameResult::redWins;
 
-  if (blue)
+  if (IsInBase() == 1)
     return GameResult::blueWins;
 
   return GameResult::NoContest;
