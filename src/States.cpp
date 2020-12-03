@@ -134,6 +134,7 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
   Obstacles isIntheSpot = IsInTheSpot(piece, position_X, position_Y);
   //SDL_Log("MOOOVE %d , %d", position_X, position_Y);
   //SDL_Log("Water : %d", piece->IsInWater(position_X, position_Y));
+  SDL_Log("Color %d ", piece->GetColor());
   if (piece->IsMovementPossible(position_X, position_Y) &&
       (IsInTheWay(piece, position_X, position_Y) == Obstacles::Empty) &&
       (isIntheSpot != Obstacles::Friend) && (pieceTurn == piece->GetColor()))

@@ -1,4 +1,5 @@
 #include "../include/Chat.hpp"
+#include <SDL2/SDL.h>
 
 Chat::Chat(bool isblue, int position_X, int position_Y)
 {
@@ -14,19 +15,46 @@ Chat::~Chat()
 {
 }
 
+bool Chat::moveOne(int movement_x, int movement_y)
+{
+  if ((movement_y == 1 || movement_y == -1) && movement_x == 0)
+    return true;
+  else if ((movement_x == 1 || movement_x == -1) && movement_y == 0)
+    return true;
+  return false;
+}
+
 bool Chat::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
 {
-  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 9 && FinalPosition_Y < 9 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
+  SDL_Log("C %d", GetColor());
+  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 7 && FinalPosition_Y < 9 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
   {
     int movement_x = FinalPosition_X - position_X;
     int movement_y = FinalPosition_Y - position_Y;
-    
-    if((movement_y == 1 || movement_y == -1) && movement_x == 0)
-      return true;
-    else if((movement_x == 1 || movement_x == -1) && movement_y == 0)
-      return true;
-  }
 
+    if (GetColor() == 1)
+    {
+      if (FinalPosition_X == 3 && FinalPosition_Y == 0)
+      {
+        return false;
+      }
+      else
+      {
+        return moveOne(movement_x, movement_y);
+      }
+    } 
+    else if (GetColor() == 0)
+    {
+      if (FinalPosition_X == 3 && FinalPosition_Y == 8)
+      {
+        return false;
+      }
+      else
+      {
+        return moveOne(movement_x, movement_y);
+      }
+    }
+  }
   return false;
 }
 

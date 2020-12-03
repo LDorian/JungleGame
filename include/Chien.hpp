@@ -17,11 +17,14 @@ public:
   ~Chien();
   using Piece::GetColor;
   using Piece::GetName;
-  using Piece::GetValue;
   using Piece::GetPositionX;
   using Piece::GetPositionY;
+  using Piece::GetValue;
   bool IsMovementPossible(int, int);
   bool IsInWater(int, int);
+
+private:
+  bool moveOne(int, int);
 };
 
 #endif
