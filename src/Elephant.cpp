@@ -40,7 +40,7 @@ bool Elephant::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
       {
         return moveOne(movement_x, movement_y);
       }
-    } 
+    }
     else if (GetColor() == 0)
     {
       if (FinalPosition_X == 3 && FinalPosition_Y == 8)
@@ -63,4 +63,34 @@ bool Elephant::IsInWater(int x, int y)
     return true;
   else
     return false;
+}
+
+bool Elephant::IsInTrap(int x, int y)
+{
+  if (GetColor() == 0)
+  {
+    if (((x == 2 || x == 4) && y == 0) || (x == 3 && y == 1))
+    {
+      this->value = PieceValue::Empty;
+      return true;
+    }
+    else
+    {
+      this->value = PieceValue::Elephant;
+      return false;
+    }
+  }
+  else
+  {
+    if (((x == 2 || x == 4) && y == 8) || (x == 3 && y == 7))
+    {
+      this->value = PieceValue::Empty;
+      return true;
+    }
+    else
+    {
+      this->value = PieceValue::Elephant;
+      return false;
+    }
+  }
 }

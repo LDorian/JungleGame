@@ -141,16 +141,25 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
   {
     if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == 1)
       EatPiece(position_X, position_Y);
+
     else if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == 2)
       return false;
-    else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 3 && 
-      piece->IsInWater(piece->GetPositionX(),piece->GetPositionY()) == true)
+
+    else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 3 &&
+             piece->IsInWater(piece->GetPositionX(), piece->GetPositionY()) == true)
       return false;
+
     else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 4)
       EatPiece(position_X, position_Y);
+
     else if (CheckValues(piece, position_X, position_Y) == 3)
       EatPiece(position_X, position_Y);
+
     SDL_Log("Base : %d", IsInBase());
+
+    piece->IsInTrap(position_X, position_Y);
+    SDL_Log("Is in trap %d", piece->IsInTrap(position_X, position_Y));
+    
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
     return true;
@@ -171,10 +180,10 @@ int States::CheckValues(Piece *piece, int position_X, int position_Y) // Return 
     {
       if ((tmp[j]->GetPositionX() == position_X) && (tmp[j]->GetPositionY() == position_Y))
       {
-        if(piece->GetName() == PieceName::Elephant && tmp[j]->GetName() == PieceName::Rat) // Elephant can't eat Rat
+        if (piece->GetName() == PieceName::Elephant && tmp[j]->GetName() == PieceName::Rat) // Elephant can't eat Rat
           return 2;
-        else if (piece->GetValue() > tmp[j]->GetValue())  // If greater = true
-          return 1;                                      
+        else if (piece->GetValue() > tmp[j]->GetValue()) // If greater = true
+          return 1;
         else if (piece->GetName() == PieceName::Rat && tmp[j]->GetName() == PieceName::Elephant) //Rat eat elephant
           return 3;
         else if (tmp[j]->GetName() == PieceName::Rat) // Rat eat Rat

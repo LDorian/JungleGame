@@ -52,6 +52,7 @@ public:
   int GetPositionY();
   virtual bool IsMovementPossible(int, int);
   virtual bool IsInWater(int, int);
+  virtual bool IsInTrap(int, int);
   void SetPosition(int, int);
   bool GetIsAlive();
   void WakeFromDead();

@@ -12,7 +12,6 @@
 
 **To Do list**
 
-* Traps
 * Change / Improve Graphics
 * Save and Resume a game
 * _Add an IA with tree intelligence with many levels_

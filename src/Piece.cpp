@@ -15,7 +15,7 @@ bool Piece::GetColor()
   return isblue;
 }
 
-PieceName Piece::GetName()
+PieceName Piece::GetName() 
 {
   return name;
 }
@@ -45,6 +45,12 @@ bool Piece::IsInWater(int FinalPosition_X, int FinalPosition_Y)
 {
   return false;
 }
+
+bool Piece::IsInTrap(int FinalPosition_X, int FinalPosition_Y)
+{
+  return false;
+}
+
 void Piece::SetPosition(int position_X, int position_Y)
 {
   if(isAlive)
