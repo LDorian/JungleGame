@@ -63,3 +63,33 @@ bool Chien::IsInWater(int x, int y)
   else
     return false;
 }
+
+bool Chien::IsInTrap(int x, int y)
+{
+  if (GetColor() == 0)
+  {
+    if (((x == 2 || x == 4) && y == 0) || (x == 3 && y == 1))
+    {
+      this->value = PieceValue::Empty;
+      return true;
+    }
+    else
+    {
+      this->value = PieceValue::Chien;
+      return false;
+    }
+  }
+  else
+  {
+    if (((x == 2 || x == 4) && y == 8) || (x == 3 && y == 7))
+    {
+      this->value = PieceValue::Empty;
+      return true;
+    }
+    else
+    {
+      this->value = PieceValue::Chien;
+      return false;
+    }
+  }
+}

@@ -22,6 +22,7 @@ public:
   using Piece::GetValue;
   bool IsMovementPossible(int, int);
   bool IsInWater(int, int);
+  bool IsInTrap(int, int);
 
 private:
   bool moveOne(int, int);
