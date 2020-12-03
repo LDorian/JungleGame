@@ -144,12 +144,12 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
     else if (isIntheSpot == Obstacles::Enemy && CheckValues(piece, position_X, position_Y) == 2)
       return false;
     else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 3 && 
-      piece->IsInWater(piece->GetPositionX(), piece->GetPositionY()) == false)
-      EatPiece(position_X, position_Y);
+      piece->IsInWater(piece->GetPositionX(),piece->GetPositionY()) == true)
+      return false;
     else if (isIntheSpot == Obstacles::Enemy && piece->GetName() == PieceName::Rat && CheckValues(piece, position_X, position_Y) == 4)
       EatPiece(position_X, position_Y);
     else if (CheckValues(piece, position_X, position_Y) == 3)
-      return false;
+      EatPiece(position_X, position_Y);
     SDL_Log("Base : %d", IsInBase());
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
