@@ -26,7 +26,7 @@ bool Rat::moveOne(int movement_x, int movement_y)
 
 bool Rat::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
 {
-  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 7 && FinalPosition_Y < 9 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
+  if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 7 && FinalPosition_Y < 9 && isAlive)
   {
     int movement_x = FinalPosition_X - position_X;
     int movement_y = FinalPosition_Y - position_Y;
