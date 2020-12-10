@@ -70,6 +70,14 @@ void Button::handleEvent(SDL_Event *e, GameState *gm)
                 case ButtonSprite::BUTTON_SPRITE_CONTINUE:
                     gm->pause = 0;
                     break;
+                case ButtonSprite::BUTTON_SPRITE_SAVE:
+                    gm->pause = 0;
+                    gm->setGameState(GameMode::GAME_MODE_SAVE);
+                    break;
+                case ButtonSprite::BUTTON_SPRITE_LOAD:
+                    gm->pause = 0;
+                    gm->setGameState(GameMode::GAME_MODE_LOAD);
+                    break;
                 case ButtonSprite::BUTTON_SPRITE_MAIN_MENU:
                     gm->pause = 0;
                     gm->setGameState(GameMode::GAME_MODE_MAIN_MENU);

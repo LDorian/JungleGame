@@ -159,7 +159,7 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
 
     piece->IsInTrap(position_X, position_Y);
     SDL_Log("Is in trap %d", piece->IsInTrap(position_X, position_Y));
-    
+
     piece->SetPosition(position_X, position_Y);
     pieceTurn = !pieceTurn;
     return true;
@@ -345,4 +345,114 @@ void States::KillAllPieces(void)
     blue_pieces[i]->SetDead();
     red_pieces[i]->SetDead();
   }
+}
+
+void States::Save(GameMode mode)
+{
+  FILE *saveFile = NULL;
+  int i, j;
+  Piece **tmp;
+  char print;
+
+  if (mode == GameMode::GAME_MODE_PVP)
+    saveFile = fopen("game.txt", "w");
+  if (saveFile == NULL)
+    return;
+
+  fprintf(saveFile, "%s", "[Turn]:");
+  fprintf(saveFile, "%c%c", pieceTurn ? 'b' : 'r', '\n');
+  fprintf(saveFile, "%s", "[Blue Pieces Board]:");
+  tmp = blue_pieces;
+  for (j = 0; j < 2; j++)
+  {
+    for (i = 0; i < 8; i++)
+    {
+      if (tmp[i]->GetIsAlive())
+      {
+        switch (tmp[i]->GetName())
+        {
+        case PieceName::Rat:
+          print = 'R';
+          break;
+        case PieceName::Chat:
+          print = 'C';
+          break;
+        case PieceName::Chien:
+          print = 'D';
+          break;
+        case PieceName::Loup:
+          print = 'W';
+          break;
+        case PieceName::Panthere:
+          print = 'P';
+          break;
+        case PieceName::Tigre:
+          print = 'T';
+          break;
+        case PieceName::Lion:
+          print = 'L';
+          break;
+        case PieceName::Elephant:
+          print = 'E';
+          break;
+        }
+        fprintf(saveFile, "%c,%d,%d%c", print, tmp[i]->GetPositionX(), tmp[i]->GetPositionY(), '|');
+      }
+      else
+      {
+        fprintf(saveFile, "%c%c", 'x', '|');
+      }
+    }
+    if (j == 0)
+    {
+      fprintf(saveFile, "%c", '\n');
+      fprintf(saveFile, "%s", "[Red Pieces Board ]:");
+      tmp = red_pieces;
+    }
+  }
+  fclose(saveFile);
+}
+
+void States::Load(GameMode mode)
+{
+  FILE *saveFile = NULL;
+  int i, j;
+  char read[170];
+  Piece **tmp;
+
+  if (mode == GameMode::GAME_MODE_PVP)
+    saveFile = fopen("game.txt", "r");
+  if (saveFile == NULL)
+    return;
+
+  fscanf(saveFile, "%[^\n].", read);
+
+  read[7] == 'b' ? pieceTurn = true : pieceTurn = false;
+
+  tmp = blue_pieces;
+  for (j = 0; j < 2; j++)
+  {
+    fscanf(saveFile, "%170[^:].", read);
+    for (i = 0; i < 170; i++)
+      SDL_Log("%c", read[i]);
+    read[0] = fgetc(saveFile);
+
+    for (i = 0; i < 8; i++)
+    {
+      fscanf(saveFile, "%170[^|].", read);
+      if (read[0] != 'x')
+      {
+        tmp[i]->WakeFromDead();
+        tmp[i]->SetPosition(atoi(&read[2]), atoi(&read[4]));
+      }
+      else
+      {
+        tmp[i]->SetDead();
+      }
+      read[0] = fgetc(saveFile);
+    }
+    tmp = red_pieces;
+  }
+
+  fclose(saveFile);
 }

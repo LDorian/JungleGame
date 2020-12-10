@@ -33,7 +33,7 @@ public:
   States();
   Obstacles IsInTheWay(Piece *, int, int);
   Obstacles IsInTheSpot(Piece *, int, int);
-  bool MovePiece(Piece *, int, int);   // Move the piece only if possible, returning true if possible and false otherwise (being able to eat a piece when an enemy is in the final square)
+  bool MovePiece(Piece *, int, int);  // Move the piece only if possible, returning true if possible and false otherwise (being able to eat a piece when an enemy is in the final square)
   int CheckValues(Piece *, int, int); // Check if piece as a lower value that the piece which will get eat
   int IsInBase();
   GameResult WhoWon(void);
@@ -43,6 +43,9 @@ public:
   void SetPieceTurn(bool);
   bool GetPieceTurn(void);
   void KillAllPieces(void);
+
+  void Save(GameMode);
+  void Load(GameMode);
 };
 
 #endif

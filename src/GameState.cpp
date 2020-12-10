@@ -169,8 +169,6 @@ void GameState::renderPVP()
 
                     board->updateFocus((int)x, (int)y);
 
-
-
                     if (board->checkMovement(states))
                     {
                         board->focusedPiece = NULL;
@@ -186,6 +184,16 @@ void GameState::renderPVP()
             }
         }
 
+        if (gameState == GameMode::GAME_MODE_SAVE)
+        {
+            states->Save(GameMode::GAME_MODE_PVP);
+            gameState = GameMode::GAME_MODE_PVP;
+        }
+        if (gameState == GameMode::GAME_MODE_LOAD)
+        {
+            states->Load(GameMode::GAME_MODE_PVP);
+            gameState = GameMode::GAME_MODE_PVP;
+        }
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 

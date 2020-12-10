@@ -16,6 +16,8 @@ enum class GameMode
     GAME_MODE_PVP = 0,
     GAME_MODE_QUIT = 3,
     GAME_MODE_CONTINUE = 4,
+    GAME_MODE_SAVE = 5,
+    GAME_MODE_LOAD = 6,
     GAME_MODE_MAIN_MENU = 7,
     GAME_MODE_PAUSE = 8,
     GAME_MODE_TOTAL = 9

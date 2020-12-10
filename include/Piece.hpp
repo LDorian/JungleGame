@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-enum class PieceName
+enum class PieceName 
 {
   Empty,
   Rat,
