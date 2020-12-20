@@ -347,6 +347,32 @@ void States::KillAllPieces(void)
   }
 }
 
+/**
+ * 
+ * 
+ * Ici Gestion Meilleur movement possible pour les difficultés de l'IA
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+*/
+
+
+
+
 void States::Save(GameMode mode)
 {
   FILE *saveFile = NULL;
@@ -433,8 +459,6 @@ void States::Load(GameMode mode)
   for (j = 0; j < 2; j++)
   {
     fscanf(saveFile, "%170[^:].", read);
-    for (i = 0; i < 170; i++)
-      SDL_Log("%c", read[i]);
     read[0] = fgetc(saveFile);
 
     for (i = 0; i < 8; i++)

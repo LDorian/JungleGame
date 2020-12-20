@@ -64,6 +64,9 @@ void Button::handleEvent(SDL_Event *e, GameState *gm)
                 case ButtonSprite::BUTTON_SPRITE_PVP:
                     gm->setGameState(GameMode::GAME_MODE_PVP);
                     break;
+                case ButtonSprite::BUTTON_SPRITE_IA:
+                    gm->setGameState(GameMode::GAME_MODE_IA);
+                    break;
                 case ButtonSprite::BUTTON_SPRITE_QUIT:
                     gm->setGameState(GameMode::GAME_MODE_QUIT);
                     break;

@@ -14,6 +14,7 @@ enum class GameMode
 {
 
     GAME_MODE_PVP = 0,
+    GAME_MODE_IA = 1,
     GAME_MODE_QUIT = 3,
     GAME_MODE_CONTINUE = 4,
     GAME_MODE_SAVE = 5,
@@ -40,6 +41,7 @@ private:
     GameMode gameState;
 
     void renderPVP();
+    void renderIA();
     void renderMainMenu();
 };
 

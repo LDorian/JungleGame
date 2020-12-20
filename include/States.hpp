@@ -18,6 +18,13 @@ enum class GameResult
   NoContest
 };
 
+enum class Level
+{
+  Facile,
+  Moyen,
+  Difficile
+};
+
 class States
 {
 private:
@@ -43,6 +50,8 @@ public:
   void SetPieceTurn(bool);
   bool GetPieceTurn(void);
   void KillAllPieces(void);
+
+  void IAMove(bool, Level);
 
   void Save(GameMode);
   void Load(GameMode);

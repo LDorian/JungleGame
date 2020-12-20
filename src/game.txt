@@ -1,3 +1,3 @@
-[Turn]:b
-[Blue Pieces Board]:x|C,5,1|x|W,4,2|P,2,2|T,0,0|L,6,0|E,6,2|
-[Red Pieces Board ]:R,6,6|x|D,5,7|W,0,5|P,4,6|T,6,8|L,0,8|x|
+[Turn]:r
+[Blue Pieces Board]:R,0,5|C,5,1|D,1,1|W,4,2|P,2,2|T,0,0|L,6,0|E,6,2|
+[Red Pieces Board ]:R,6,6|C,1,7|D,5,7|W,1,6|P,4,6|T,6,8|L,0,8|x|

@@ -127,8 +127,6 @@ void GameState::renderPVP()
 {
 
     bool quit = false;
-    bool showHint = false;
-    bool showBest = false;
     int x = -1, y = -1;
 
     SDL_Event e;
@@ -216,6 +214,122 @@ void GameState::renderPVP()
         {
             endGame[(int)gameResult].render(0, 0);
         }
+        SDL_RenderPresent(gRenderer);
+    }
+    delete states;
+    delete board;
+}
+
+void GameState::renderIA()
+{
+
+    bool quit = false;
+    int x = -1, y = -1;
+
+    bool player = true;
+    bool IATurn = false;
+
+    SDL_Event e;
+    States *states = new States();
+    GUIBoard *board = new GUIBoard();
+    GameResult gameResult = GameResult::NoContest;
+
+    player = board->choosePieceTurn(this, states);
+    states->SetPieceTurn(player);
+
+    IATurn = false; // Player starts to play
+
+    while (gameState == GameMode::GAME_MODE_IA)
+    {
+        while (SDL_PollEvent(&e) != 0)
+        {
+            if (e.type == SDL_QUIT)
+            {
+                gameState = GameMode::GAME_MODE_QUIT;
+            }
+            else if (e.type == SDL_KEYDOWN)
+            {
+                switch (e.key.keysym.sym)
+                {
+                case SDLK_ESCAPE:
+                    renderPauseMenu();
+                    break;
+                }
+            }
+            else if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                switch (e.type)
+                {
+                case SDL_MOUSEBUTTONDOWN:
+                    if (IATurn == false)
+                    {
+                        x = -1;
+                        y = -1;
+                        SDL_GetMouseState(&x, &y);
+                        SDL_Log("Avant %d, %d", x, y);
+
+                        board->updateFocus((int)x, (int)y);
+
+                        if (board->checkMovement(states))
+                        {
+                            board->focusedPiece = NULL;
+                        }
+                        else
+                        {
+
+                            SDL_Log("Dans le premier click");
+                            board->focusedPiece = states->GetPiece(board->focus.x, board->focus.y);
+                        }
+                        break;
+                        IATurn = true;
+                    }
+                }
+            }
+        }
+
+        if (gameState == GameMode::GAME_MODE_SAVE)
+        {
+
+            states->Save(GameMode::GAME_MODE_IA);
+            gameState = GameMode::GAME_MODE_IA;
+        }
+
+        if (gameState == GameMode::GAME_MODE_LOAD)
+        {
+
+            states->Load(GameMode::GAME_MODE_IA);
+            gameState = GameMode::GAME_MODE_IA;
+        }
+
+        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(gRenderer);
+
+        gBoard.render(0, 0);
+
+        gameResult = states->WhoWon();
+        if (gameResult == GameResult::NoContest)
+        {
+
+            if (IATurn = true)
+            {
+               // states->IAMove(!player, Level::Facile); // Difficulty level
+                IATurn = false;
+            }
+
+            if ((board->focusedPiece != NULL))
+            {
+                if (board->focusedPiece->GetName() != PieceName::Empty && (board->focusedPiece->GetColor() == states->GetPieceTurn()))
+                {
+                    pieceSelected.render(board->indexToPixel(board->focus.x), board->indexToPixel(board->focus.y) + 2);
+                }
+            }
+            board->renderAllPieces(states);
+        }
+        else
+        {
+            endGame[(int)gameResult].render(0, 0);
+        }
+
         SDL_RenderPresent(gRenderer);
     }
     delete states;

@@ -22,6 +22,7 @@ bool Chien::moveOne(int movement_x, int movement_y)
     return true;
   return false;
 }
+
 bool Chien::IsMovementPossible(int FinalPosition_X, int FinalPosition_Y)
 {
   if (FinalPosition_X >= 0 && FinalPosition_Y >= 0 && FinalPosition_X < 7 && FinalPosition_Y < 9 && isAlive && IsInWater(FinalPosition_X, FinalPosition_Y) == false)
