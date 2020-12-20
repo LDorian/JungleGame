@@ -12,11 +12,8 @@
 
 **To Do list**
 
-* Change / Improve Graphics
-* Save and Resume a game
-* _Add an IA with tree intelligence with many levels_
+* Add IA Algorithm
 * _Add online mode_
-* _Improve GUI code_
 
 **Folders :**
 
