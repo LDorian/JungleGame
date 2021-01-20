@@ -163,7 +163,7 @@ void GameState::renderPVP()
                     x = -1;
                     y = -1;
                     SDL_GetMouseState(&x, &y);
-                    SDL_Log("Avant %d, %d", x, y);
+                    //SDL_Log("Avant %d, %d", x, y);
 
                     board->updateFocus((int)x, (int)y);
 
@@ -174,7 +174,7 @@ void GameState::renderPVP()
                     else
                     {
                         //If no move, actual focus = piece focus
-                        SDL_Log("Dans le premier click");
+                        //SDL_Log("Dans le premier click");
                         board->focusedPiece = states->GetPiece(board->focus.x, board->focus.y);
                     }
                     break;
@@ -209,6 +209,14 @@ void GameState::renderPVP()
                 }
             }
             board->renderAllPieces(states);
+            // SDL_AudioSpec wavSpec;
+            // Uint32 wavLength;
+            // Uint8 *wavBuffer;
+            // SDL_LoadWAV("../assets/clic.wav", &wavSpec, &wavBuffer, &wavLength);
+            // SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
+            // int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);
+            // SDL_PauseAudioDevice(deviceId, 0);
+            // SDL_Delay(1000);
         }
         else
         {
@@ -238,7 +246,6 @@ void GameState::renderIA()
     states->SetPieceTurn(player);
 
     IATurn = false; // Player starts to play
-
     while (gameState == GameMode::GAME_MODE_IA)
     {
         while (SDL_PollEvent(&e) != 0)
@@ -276,13 +283,12 @@ void GameState::renderIA()
                         }
                         else
                         {
-
                             SDL_Log("Dans le premier click");
                             board->focusedPiece = states->GetPiece(board->focus.x, board->focus.y);
                         }
-                        break;
                         IATurn = true;
                     }
+                    break;
                 }
             }
         }
@@ -309,14 +315,12 @@ void GameState::renderIA()
         gameResult = states->WhoWon();
         if (gameResult == GameResult::NoContest)
         {
-
-            if (IATurn = true)
+            if (IATurn == true)
             {
-               // states->IAMove(!player, Level::Facile); // Difficulty level
+                states->IAMove(!player, Level::Facile); // Difficulty level
                 IATurn = false;
             }
-
-            if ((board->focusedPiece != NULL))
+            if ((board->focusedPiece != NULL) && IATurn == false)
             {
                 if (board->focusedPiece->GetName() != PieceName::Empty && (board->focusedPiece->GetColor() == states->GetPieceTurn()))
                 {
@@ -351,6 +355,9 @@ void GameState::startStateMachine(GameMode gameMode)
             break;
         case GameMode::GAME_MODE_PVP:
             renderPVP();
+            break;
+        case GameMode::GAME_MODE_IA:
+            renderIA();
             break;
         }
     }

@@ -134,7 +134,7 @@ bool States::MovePiece(Piece *piece, int position_X, int position_Y)
   Obstacles isIntheSpot = IsInTheSpot(piece, position_X, position_Y);
   //SDL_Log("MOOOVE %d , %d", position_X, position_Y);
   //SDL_Log("Water : %d", piece->IsInWater(position_X, position_Y));
-  SDL_Log("Color %d ", piece->GetColor());
+  //SDL_Log("Color %d ", piece->GetColor());
   if (piece->IsMovementPossible(position_X, position_Y) &&
       (IsInTheWay(piece, position_X, position_Y) == Obstacles::Empty) &&
       (isIntheSpot != Obstacles::Friend) && (pieceTurn == piece->GetColor()))
@@ -356,7 +356,50 @@ void States::KillAllPieces(void)
  * 
  * 
  * 
- * 
+ */
+void States::IAMove(bool color, Level difficulty)
+{
+  Piece **piece;
+  int values[16], i, n, j, k;
+  bool result = false;
+
+  if (color)
+  {
+    piece = blue_pieces;
+  }
+  else
+  {
+    piece = red_pieces;
+  }
+
+  switch (difficulty)
+  {
+  case Level::Difficile:
+    break;
+
+  case Level::Moyen:
+    break;
+
+  case Level::Facile:
+   while (result == false)
+    {
+      i = rand() % 8;
+      for (j = 0; j < 8; j++) // X
+      {
+        for (k = 0; k < 10; k++) // Y
+        {
+          result = MovePiece(piece[i], j, k);
+          if(result==true)goto test;
+        }
+      }
+      test:
+      break;
+    } 
+    return;
+  }
+}
+
+/*
  * 
  * 
  * 
@@ -370,9 +413,6 @@ void States::KillAllPieces(void)
  * 
 */
 
-
-
-
 void States::Save(GameMode mode)
 {
   FILE *saveFile = NULL;
@@ -381,6 +421,8 @@ void States::Save(GameMode mode)
   char print;
 
   if (mode == GameMode::GAME_MODE_PVP)
+    saveFile = fopen("game.txt", "w");
+  if (mode == GameMode::GAME_MODE_IA)
     saveFile = fopen("game.txt", "w");
   if (saveFile == NULL)
     return;
@@ -447,6 +489,8 @@ void States::Load(GameMode mode)
   Piece **tmp;
 
   if (mode == GameMode::GAME_MODE_PVP)
+    saveFile = fopen("game.txt", "r");
+  if (mode == GameMode::GAME_MODE_IA)
     saveFile = fopen("game.txt", "r");
   if (saveFile == NULL)
     return;
