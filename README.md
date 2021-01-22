@@ -12,8 +12,8 @@
 
 **To Do list**
 
-* Add IA Algorithm
 * _Add online mode_
+* _Level Medium / Hard IA_
 
 **Folders :**
 
