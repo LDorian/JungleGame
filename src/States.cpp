@@ -182,7 +182,7 @@ int States::CheckValues(Piece *piece, int position_X, int position_Y) // Return 
       {
         if (piece->GetName() == PieceName::Elephant && tmp[j]->GetName() == PieceName::Rat) // Elephant can't eat Rat
           return 2;
-        else if (piece->GetValue() > tmp[j]->GetValue()) // If greater = true
+        else if (piece->GetValue() >= tmp[j]->GetValue()) // If greater = true
           return 1;
         else if (piece->GetName() == PieceName::Rat && tmp[j]->GetName() == PieceName::Elephant) //Rat eat elephant
           return 3;

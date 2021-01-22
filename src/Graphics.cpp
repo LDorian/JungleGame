@@ -3,7 +3,7 @@
 #include "../include/Piece.hpp"
 #include "../include/States.hpp"
 
-// Gestion boutons souris
+// Gestion boutons menu
 SDL_Rect gSpriteClips[(int)ButtonSprite::BUTTON_SPRITE_TOTAL];
 Texture gCheckTexture;
 Texture gButtonSpriteSheetTexture;
@@ -17,7 +17,6 @@ SDL_Renderer *gRenderer = NULL;
 Texture gBoard;
 Texture bluePieces[9];
 Texture redPieces[9];
-Texture gChien;
 Texture pieceSelected;
 Texture endGame[3];
 Texture selection;
@@ -34,12 +33,6 @@ bool Graphics::loadMedia()
     }
 
     if (!pieceSelected.loadFromFile("../assets/selected.png"))
-    {
-        printf("Failed to load texture!\n");
-        success = false;
-    }
-
-    if (!gChien.loadFromFile("../assets/chienR.bmp"))
     {
         printf("Failed to load texture!\n");
         success = false;
